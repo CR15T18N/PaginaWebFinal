@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .parrafo {
+            font-size: 110%;
+            margin-bottom: 12px;
+            background-image: linear-gradient(165deg, rgb(48, 48, 48), rgb(240, 240, 240), rgb(141, 141, 141));
+            transition: all 3s ease;
+            -webkit-transition: all 3s ease;
+        }
+        .prarafo::before {
+            transition: all 3s ease;
+            -webkit-transition: all 3s ease;
+        }
+        .parrafo:hover{
+            background-image: linear-gradient(165deg, rgb(141, 141, 141), rgb(240, 240, 240), rgb(48, 48, 48));
+        }
+        .contenido {
+            margin-bottom: 36px;
+            contain: content;
+            max-width: fit-content;
+        }
+        .primero::first-letter {
+            font-size: 200%;
+            font-weight: bold;
+            font-style: italic;
+            color: black
+        }
+        .cuerpo {
+            text-align: center;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        .close {
+            color: #aaaaaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .cara {
+            width: 29.3%;
+            background-size: contain;
+            margin: auto;
+            height: 400px;
+            transition: all 0.5s ease 3s;
+        }
+        .flip-card {
+            background-color: transparent;
+            width: 400px;
+            height: 400px;
+            perspective: 1000px;
+        }
+        .flip-card .inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+        }
+        .flip-card .inner .front,
+        .flip-card .inner .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .flip-card .inner .front {
+            background-color: #bbb;
+        }
+        .flip-card .inner .back {
+            background-image: linear-gradient(180deg, Red, Blue, Red);
+            color: white;
+            transform: rotateY(180deg);
+        }
+        .flip-card:hover .inner {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="cuerpo">
+        <div class="primero contenido">
+            <p class="parrafo">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut dictum vehicula finibus. Sed mattis augue eu nisl volutpat, 
+                quis aliquet ipsum pellentesque. Aenean facilisis neque eu dui malesuada euismod. Quisque ut elit orci. Donec facilisis 
+                magna et fermentum condimentum. Cras commodo ante non augue gravida, ac ultrices justo accumsan. Suspendisse eleifend 
+                placerat tristique. In hac habitasse platea dictumst.
+            </p>
+        </div>
+        <div class="contenido">
+            <p class="parrafo">Nam molestie lectus vitae viverra aliquet. Nullam consectetur pellentesque lorem eget condimentum. Pellentesque nisi justo, 
+                porttitor ac gravida vestibulum, gravida vel est. Mauris ac justo non mauris dictum auctor. Proin non mi consequat, ultricies 
+                ante eget, efficitur augue. Cras consectetur turpis nec auctor lacinia. Mauris imperdiet sagittis augue, in scelerisque justo 
+                elementum quis. Morbi scelerisque enim in pretium auctor. Curabitur porttitor neque feugiat posuere imperdiet. Duis non 
+                aliquam leo, ut vulputate nulla. Ut lobortis ornare est, a dignissim ex. Praesent accumsan semper purus id tincidunt. Quisque 
+                metus arcu, fringilla mattis dui ac, rutrum blandit arcu. Nulla placerat tortor ipsum, sed tincidunt nisl venenatis nec.
+            </p>
+        </div>
+        <div class="contenido">
+            <p class="parrafo">Morbi est metus, imperdiet vel pulvinar vel, rhoncus in sem. Donec et imperdiet erat. Donec odio tortor, semper quis eleifend non, 
+                venenatis vitae mi. Maecenas metus est, maximus ac sem ut, aliquam facilisis urna. Phasellus eu ultrices lorem. Duis vestibulum 
+                ipsum id commodo ullamcorper. Aenean nec ex lacinia, blandit augue et, aliquet elit. Vestibulum sollicitudin mollis libero, vitae 
+                tempor purus semper vel.
+            </p>
+        </div>
+        <button id="myBtn">Mi cara</button>
+        <section id="myModal" class="modal">
+            <section class="modal-content">
+                <span class="close">&times;</span>
+                <div class="cara">
+                    <div class="flip-card">
+                        <div class="inner">
+                          <div class="front">
+                            <img src="http://localhost/PaginaWebFinal/wp-content/uploads/2022/06/image.jpg" style="width:400px;height:400px;"/>
+                            <!--si el path no funciona provar con este: 
+                            /xampp/htdocs/PaginaWebFinal/wp-content/themes/twentyseventeen/assets/images/image.jpg -->
+                          </div>
+                          <div class="back">
+                            <h1>Sorpresa!!</h1>
+                            <p>No es mi cara</p>
+                            <p>Es una cara artificial creada con photoshop</p>
+                          </div>
+                        </div>
+                      </div>
+                </div>
+            </section>    
+        </section>
+    </div>
+    <script>
+        var modal = document.getElementById("myModal");
+        var btn = document.getElementById("myBtn");
+        var span = document.getElementsByClassName("close")[0];
+        btn.onclick = function() {
+            modal.style.display = "block";
+        }
+        span.onclick = function() {
+            modal.style.display = "none";
+        }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
